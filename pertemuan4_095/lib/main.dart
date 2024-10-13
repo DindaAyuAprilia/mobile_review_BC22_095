@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pertemuan3_095/pages/bottom.dart';
 //import 'package:pertemuan3_095/pages/login_page.dart';
 import 'package:pertemuan3_095/pages/home_page.dart';
+import 'package:pertemuan3_095/pages/profile_page.dart';
+import 'package:pertemuan3_095/pages/setting_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +22,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home: const BottomNavigationPage(),
+      routes: {
+        "/HomePage" : (context) => const MyHomePage(),
+        "/ProfilePage" : (context) => const MyProfilePage(),
+        "/SettingsPage" : (context) => const MySettingPage(),
+      },
     );
   }
 }
