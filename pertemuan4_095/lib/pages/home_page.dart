@@ -151,10 +151,91 @@
 //   }
 // }
 
-// Pertemuan 5
+// // Pertemuan 5
+// import 'package:flutter/material.dart';
+// import 'package:pertemuan3_095/pages/profile_page.dart';
+// import 'package:pertemuan3_095/pages/setting_page.dart';
+
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({super.key});
+
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Home Page"),
+//       ),
+//       drawer: Drawer(
+//         backgroundColor: Colors.white,
+//         child: Column(
+//           children: [
+//             const UserAccountsDrawerHeader(
+//               currentAccountPicture: CircleAvatar(
+//                 backgroundImage: AssetImage('assets/profile.png'),
+//               ),
+//               accountName: Text("Praktikum Mobile"),
+//               accountEmail: Text('mobile@gmail.com'),
+//               decoration: BoxDecoration(color: Colors.lightBlueAccent),
+//             ),
+//             ListTile(
+//               leading: const Icon(Icons.settings),
+//               title: const Text('Settings'),
+//               onTap: () {
+//                 Navigator.pushNamed(context, "/SettingsPage");
+//               },
+//             ),
+//             ListTile(
+//               leading: const Icon(Icons.search),
+//               title: const Text('Cari'),
+//               onTap: () {},
+//             ),
+//           ],
+//         ),
+//       ),
+//       backgroundColor: Colors.red,
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+//                   return const MySettingPage();
+//                 }));
+//               },
+//               child: const Text("Pindah ke Settings Page"),
+//             ),
+//             ElevatedButton(
+//               onPressed: () {
+//                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+//                   return const MyProfilePage();
+//                 }));
+//               },
+//               child: const Text("Pindah ke Profile Page"),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
+// Pertemuan 6
+
 import 'package:flutter/material.dart';
-import 'package:pertemuan3_095/pages/profile_page.dart';
-import 'package:pertemuan3_095/pages/setting_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -164,63 +245,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
+    var lebar = MediaQuery.of(context).size.width;
+    var tinggi = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text('PRAKTIKUM MOBILE (2209106095)'),
+        backgroundColor: const Color.fromARGB(255, 247, 7, 255), // Purple-ish color for AppBar
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: Column(
-          children: [
-            const UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/profile.png'),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 0),
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selected = !selected;
+              });
+            },
+            child: Center(
+              child: AnimatedContainer(
+                width: selected ? lebar * 0.2 : lebar * 0.5,  // Ukuran berubah sesuai selected
+                height: selected ? tinggi * 0.5 : tinggi * 0.3, // Tinggi berubah sesuai selected
+                color: selected ? Colors.red : Colors.blue, // Warna berubah sesuai selected
+                alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
+                duration: const Duration(seconds: 2),
+                curve: Curves.fastOutSlowIn,
               ),
-              accountName: Text("Praktikum Mobile"),
-              accountEmail: Text('mobile@gmail.com'),
-              decoration: BoxDecoration(color: Colors.lightBlueAccent),
             ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                Navigator.pushNamed(context, "/SettingsPage");
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.search),
-              title: const Text('Cari'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
-      backgroundColor: Colors.red,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const MySettingPage();
-                }));
-              },
-              child: const Text("Pindah ke Settings Page"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const MyProfilePage();
-                }));
-              },
-              child: const Text("Pindah ke Profile Page"),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
