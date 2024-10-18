@@ -19,7 +19,7 @@ class ThemeScreen extends StatelessWidget {
               'Headline Large',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 25),
             Text(
               'Body Large',
               style: Theme.of(context).textTheme.bodyLarge,
@@ -64,3 +64,4 @@ class ThemeScreen extends StatelessWidget {
     );
   }
 }
+
